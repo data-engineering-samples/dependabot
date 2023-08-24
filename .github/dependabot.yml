@@ -2,11 +2,8 @@
 version: 2
 updates:
     - package-ecosystem: "gomod"
-      directory: "/go/"
+      directory: "/go"
       reviewers:
-        - "AndrewGutierrezCastro"
-        - "maurigamg"
-        - "Marcosmh0199"
-        - "danielcdz"
+        - "data-engineering-samples/reviewers"
       schedule:
         interval: "daily"
