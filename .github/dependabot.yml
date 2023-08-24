@@ -1,3 +1,12 @@
 # Basic set up for package managers
 version: 2
 updates:
+    - package-ecosystem: "gomod"
+      directory: "/go/"
+      reviewers:
+        - "AndrewGutierrezCastro"
+        - "maurigamg"
+        - "Marcosmh0199"
+        - "danielcdz"
+      schedule:
+        interval: "daily"
