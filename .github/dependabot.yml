@@ -7,3 +7,13 @@ updates:
         - "data-engineering-samples/reviewers"
       schedule:
         interval: "daily"
+      # Disable version updates for gomod dependencies. This option has no impact on security updates
+      open-pull-requests-limit: 0
+    - package-ecosystem: "pip"
+      directory: "/python"
+      reviewers:
+        - "data-engineering-samples/reviewers"
+      schedule:
+        interval: "daily"
+      # Disable version updates for pip dependencies. This option has no impact on security updates
+      open-pull-requests-limit: 0
