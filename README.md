@@ -10,3 +10,20 @@
     $ XXX.XXX.XXX.XXX : 61.405ms 2023-08-23 15:54:15.805536 -0600 CST m=+3.023389203
 
     ```
+    
+## How to use python example script
+
+    ```bash
+    $ python example.py
+    $ {
+    $   "id": 11,
+    $   "song_id": "4387-9c56-49d0",
+    $   "released_at": "2021-01-01",
+    $   "duration_seconds": 191,
+    $   "artist": "Titobeats",
+    $   "name": "Happy New Year 2021 - Instrumental",
+    $   "last_played_at": null,
+    $   "times_played": null,
+    $   "global_rank": null
+    $  },
+    $  ...
