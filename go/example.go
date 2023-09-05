@@ -1,4 +1,4 @@
-package main
+package go_example
 
 import (
 	"flag"
@@ -19,7 +19,7 @@ type response struct {
 	rtt  time.Duration
 }
 
-func main() {
+func execute() {
 	var useUDP bool
 	flag.BoolVar(&useUDP, "udp", false, "use non-privileged datagram-oriented UDP as ICMP endpoints")
 	flag.BoolVar(&useUDP, "u", false, "use non-privileged datagram-oriented UDP as ICMP endpoints (shorthand)")

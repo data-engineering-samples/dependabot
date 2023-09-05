@@ -1,7 +1,6 @@
-package main_test
+package go_example_test
 
 import (
-	. "github.com/onsi/ginkgo/v2"
 	_ "github.com/onsi/gomega"
 )
 
