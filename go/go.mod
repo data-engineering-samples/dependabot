@@ -2,9 +2,4 @@ module main
 
 go 1.20
 
-require github.com/tatsushid/go-fastping v0.0.0-20160109021039-d7bb493dee3e
-
-require (
-	golang.org/x/sys v0.12.0 // indirect
-	golang.org/x/text v0.3.2 // indirect
-)
+require golang.org/x/text v0.3.2
