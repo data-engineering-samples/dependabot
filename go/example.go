@@ -10,7 +10,6 @@ import (
 	"syscall"
 	"time"
 
-	_ "github.com/hamba/avro/v2"
 	"github.com/tatsushid/go-fastping"
 )
 
