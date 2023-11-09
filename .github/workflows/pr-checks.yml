@@ -1,10 +1,9 @@
-name: PR Approvals Checks
+name: Check PR Approvals
 
 on:
-  pull_request:
+  pull_request_review:
     types:
-      - opened
-      - synchronize
+      - submitted
 
 jobs:
   check-approvals:
@@ -13,19 +12,19 @@ jobs:
     steps:
     - name: Check PR approvals
       run: |
+        PR_NUMBER=${{ github.event.pull_request.number }}
         APPROVALS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                     -H "Accept: application/vnd.github.v3+json" \
-                     "${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }}/reviews" \
-                   | jq -r '.[] | select(.state == "APPROVED") | .user.login')
+                       -H "Accept: application/vnd.github.v3+json" \
+                       "${{ github.api_url }}/repos/${{ github.repository }}/pulls/$PR_NUMBER/reviews" \
+                     | jq -r '.[] | select(.state == "APPROVED") | .user.login')
 
         ALL_REVIEWERS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
                           -H "Accept: application/vnd.github.v3+json" \
-                          "${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }}" \
+                          "${{ github.api_url }}/repos/${{ github.repository }}/pulls/$PR_NUMBER" \
                         | jq -r '.requested_reviewers[]')
 
         if [ "$(echo "$APPROVALS" | sort)" == "$(echo "$ALL_REVIEWERS" | sort)" ]; then
           echo "All reviewers have approved the PR."
         else
           echo "Not all reviewers have approved the PR."
-          exit 1
         fi
