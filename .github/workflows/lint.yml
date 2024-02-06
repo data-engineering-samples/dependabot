@@ -24,7 +24,11 @@ jobs:
         run: go install golang.org/x/lint/golint@latest
 
       - name: Run go vet
-        run: go vet ./...
+        run: |
+          for dir in $(find . -type f -name 'go.mod' -exec dirname {} \;); do
+            echo "Running go vet in $dir"
+            go vet "$dir/..."
+          done
 
       - name: Run golint
         run: golint -set_exit_status ./...
