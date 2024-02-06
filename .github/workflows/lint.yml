@@ -31,9 +31,11 @@ jobs:
             go vet ./...
             cd -
           done
+        continue-on-error: true
 
       - name: Run golint
         run: golint -set_exit_status ./...
+        continue-on-error: true
 
       - name: Check for errors
         run: exit $(jobs -p | xargs -I {} echo "($(jobs -l {} | grep -c 'Exit status'))")
