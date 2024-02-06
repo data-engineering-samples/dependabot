@@ -1,18 +1,29 @@
-name: Run Makefile
+name: Golang Linters
 
 on:
   pull_request:
     branches:
-      - main
+      - main 
       - master
 
 jobs:
-  build:
+  lint:
+    name: Lint Golang Code
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Run Makefile
-      run: make
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18  # Specify the desired Go version here
+
+      - name: Install golint
+        run: go get -u golang.org/x/lint/golint
+
+      - name: Run golint
+        run: golint ./...
+
+
