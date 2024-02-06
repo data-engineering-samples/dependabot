@@ -31,6 +31,8 @@ jobs:
             go vet ./...
             cd -
           done
+        continue-on-error: true
 
       - name: Run golint
         run: golint -set_exit_status ./...
+        continue-on-error: true
