@@ -27,7 +27,9 @@ jobs:
         run: |
           for dir in $(find . -type f -name 'go.mod' -exec dirname {} \;); do
             echo "Running go vet in $dir"
-            go vet "$dir/..."
+            cd "$dir"
+            go vet ./...
+            cd -
           done
 
       - name: Run golint
