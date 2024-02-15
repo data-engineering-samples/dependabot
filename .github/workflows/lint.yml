@@ -1,29 +1,31 @@
 name: Golang Linters
-
 on:
   pull_request:
     branches:
-      - main 
+      - main
       - master
-
 jobs:
   lint:
     name: Lint Golang Code
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.18  # Specify the desired Go version here
 
       - name: Install golint
-        run: go get -u golang.org/x/lint/golint
+        run: go install golang.org/x/lint/golint@latest
 
+      - name: Run go vet
+        run: |
+          for dir in $(find . -type f -name 'go.mod' -exec dirname {} \;); do
+            echo "Running go vet in $dir"
+            cd "$dir"
+            go vet ./...
+            cd -
+          done
       - name: Run golint
-        run: golint ./...
-
-
+        run: golint -set_exit_status ./...
