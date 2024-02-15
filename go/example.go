@@ -15,4 +15,5 @@ func main() {
 		log.Fatalf("Error: %v", err)
 	}
 	fmt.Print(result)
+	fmt.Print("Hello, World!\n")
 }
